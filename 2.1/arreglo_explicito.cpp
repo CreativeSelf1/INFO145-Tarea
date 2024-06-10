@@ -2,6 +2,7 @@
 #include <random>
 #include <iostream>
 #include <algorithm>
+#include <ctime> 
  
 using namespace std;
 
@@ -9,12 +10,19 @@ void imprimirArreglo(int* arreglo, int n){
     for (int i = 0; i < n; i++){
         cout << arreglo[i] << " ";
     }
+    cout << endl;
     
 }
 void Busqueda_binaria(int* lineal, int tamano, int search){
+    unsigned t0, t1;
+    
+    t0=clock();
     bool encontrado = binary_search(lineal, lineal + tamano, search);
+    t1=clock();
 
-    cout << encontrado << endl;
+    double time = (double(t1-t0)/CLOCKS_PER_SEC);
+
+    cout << time << endl;
 }
 
 int* GeneradorLineal(int n) {
@@ -35,12 +43,12 @@ int* GeneradorNormal(int n){
 }
 
 int main(int argc, char *argv[]) {
-    int n = 10;
+    int n = 1000000000;
 
     int* lineal = GeneradorLineal(n);
     int* normal = GeneradorNormal(n);
 
-    //imprimirArreglo(lineal, n);
+   // imprimirArreglo(lineal, n);
     Busqueda_binaria(lineal, n, 104);
 
 }

@@ -51,4 +51,6 @@ int main(int argc, char *argv[]) {
    // imprimirArreglo(lineal, n);
     Busqueda_binaria(lineal, n, 104);
 
+
+    return 0;
 }

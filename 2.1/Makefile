@@ -4,7 +4,7 @@ BINS= arreglo_explicito
 all: clean arreglo_explicito
 
 arreglo_explicito:
-	$(CC) $(CFLAGS) -o arreglo_explicito arreglo_explicito.cpp  
+	$(CC) $(CFLAGS) -o arreglo_explicito BinarySearch/binarySearch.cpp arreglo_explicito.cpp  
 
  
 clean:

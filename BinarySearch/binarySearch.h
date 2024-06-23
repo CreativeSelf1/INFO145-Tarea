@@ -1,8 +1,9 @@
 #ifndef BINARY_SEARCH
 #define BINARY_SEARCH
 
+#include <vector>
 using namespace std;
 
-int binary_search(int *arr,int tamano, int key);
+bool binary_search(const vector<int>& arr, int key);
 
 #endif

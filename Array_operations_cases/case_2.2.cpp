@@ -2,18 +2,6 @@
 
 using namespace std;
 
-void search_measure(vector<int>& array, int amount){
-    cout << "numeros encontrados con busqueda binaria: ";
-    int key;
-    for (int i = 0; i < amount; i++) {
-        key = array[rand() % array.size()]; // genera numeros aleatorios en el rango del arreglo
-        bool found = binary_search(array, key);
-        if (found) {
-            cout << key << " ";
-        }
-    }
-    cout << endl;
-}
 
 vector<int> gapCoding(vector<int>& lineal, int n){
     vector<int> gapArray(n);

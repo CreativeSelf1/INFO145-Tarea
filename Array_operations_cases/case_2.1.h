@@ -3,11 +3,16 @@
 
 #include <vector>
 #include <random>
+#include <ostream>
+#include <algorithm>
+#include <iostream>
+#include "../BinarySearch/BinarySearch.h"
 
 using namespace std;
 
 vector<int> GeneradorLineal(int n, int epsilon);
-vector<int> GeneradorNormal(int n);
+vector<double> GeneradorNormal(int n, double media, double sigma);
+void search_measure(vector<int>& array, int amount);
 
 #endif 
 

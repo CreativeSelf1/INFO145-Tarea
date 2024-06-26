@@ -4,6 +4,7 @@
 #include <ctime> 
 
 #include "BinarySearch/binarySearch.h"
+#include "BinarySearch/searchMeasure.h"
 #include "Array_operations_cases/case_2.1.h"
 #include "Array_operations_cases/case_2.2.h"
 
@@ -31,8 +32,8 @@ int main(int argc, char *argv[]) {
     double sigma = 2;  //desviacion estandar
     int amount = 10;  //numero de busquedas 
     int epsilon = 10;
-    int m = 7;        //numero de elementos del arreglo    2.2
-    int b = 4;        //intervalo para eleccion de elementos   2.2
+    int m = 5;        //numero de elementos del arreglo    2.2
+    int b = n/m;        //intervalo para eleccion de elementos, con b=n/m   2.2
     
 
 

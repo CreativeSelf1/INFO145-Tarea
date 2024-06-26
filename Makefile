@@ -4,7 +4,7 @@ BINS= INFO145-tarea
 all: clean INFO145-tarea
 
 INFO145-tarea:
-	$(CC) $(CFLAGS) -o INFO145-tarea BinarySearch/binarySearch.cpp Array_operations_cases/case_2.1.cpp Array_operations_cases/case_2.2.cpp INFO145-tarea.cpp  
+	$(CC) $(CFLAGS) -o INFO145-tarea BinarySearch/binarySearch.cpp BinarySearch/searchMeasure.cpp Array_operations_cases/case_2.1.cpp Array_operations_cases/case_2.2.cpp INFO145-tarea.cpp  
 
  
 clean:

@@ -43,8 +43,8 @@ int main(int argc, char *argv[]) {
     vector<int> lineal = GeneradorLineal(n, epsilon);
     vector<double> normal = GeneradorNormal(n, calcularMedia(lineal), sigma);
 
-    cout << "vector lineal: "; imprimirArray(lineal);
-    cout << "vector normal: "; imprimirArray(normal);
+    //cout << "vector lineal: "; imprimirArray(lineal);
+    //cout << "vector normal: "; imprimirArray(normal);
 
     search_measure(lineal, amount);   //realizar "amount" cantidades de busquedas de busquedas binarias
     //search_measure(normal, amount);

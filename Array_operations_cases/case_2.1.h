@@ -11,8 +11,7 @@
 using namespace std;
 
 vector<int> GeneradorLineal(int n, int epsilon);
-vector<double> GeneradorNormal(int n, double media, double sigma);
-void search_measure(vector<int>& array, int amount);
+vector<int> GeneradorNormal(int n, double media, double sigma);
 
 #endif 
 

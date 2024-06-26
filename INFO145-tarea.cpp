@@ -29,21 +29,21 @@ double calcularMedia(vector<int>& v) {
 int main(int argc, char *argv[]) {
     //Definicion de variables
     int n = 10;       //largo del arreglo
-    double sigma = 2;  //desviacion estandar
+    double sigma = 10;  //desviacion estandar
     int amount = 10;  //numero de busquedas 
     int epsilon = 10;
     int m = 5;        //numero de elementos del arreglo    2.2
     int b = n/m;        //intervalo para eleccion de elementos, con b=n/m   2.2
-    
+    cout << b <<endl;
 
 
 
     // CASO 2.1  -  Arreglo explicito
    
     vector<int> lineal = GeneradorLineal(n, epsilon);
-    vector<double> normal = GeneradorNormal(n, calcularMedia(lineal), sigma);
+    vector<int> normal = GeneradorNormal(n, calcularMedia(lineal), sigma);
 
-    //cout << "vector lineal: "; imprimirArray(lineal);
+    cout << "vector lineal: "; imprimirArray(lineal);
     //cout << "vector normal: "; imprimirArray(normal);
 
     search_measure(lineal, amount);   //realizar "amount" cantidades de busquedas de busquedas binarias
@@ -54,16 +54,17 @@ int main(int argc, char *argv[]) {
     // CASO 2.2 GAP-CODING
     vector<int> gapCodingArray_lineal = gapCoding(lineal, n);
     //vector<int> gapCodingArray_normal = gapCoding(normal, n);
-    //cout << " gapCodingArray_lineal: "; imprimirArreglo(gapCodingArray_lineal);
+    std::cout << "gapCodingArray_lineal: "; imprimirArray(gapCodingArray_lineal);
+    //std::cout << "gapCodingArray_normal: "; imprimirArray(gapCodingArray_normal);
     
 
     vector<int> sampleArray_lineal = sampleCoding(lineal, n, m, b);
-    //vector<int> sampleArray_normal = sampleCoding(lineal, n, m, b);
-    //cout << "sample lineal: "; imprimirArreglo(sampleArray_lineal);
+    //vector<int> sampleArray_normal = sampleCoding(normal, n, m, b);
+    cout << "sample lineal: "; imprimirArray(sampleArray_lineal);
+    //cout << "sample normal: "; imprimirArray(sampleArray_normal);
 
-
-    bool found = gapCodingSearch(lineal, gapCodingArray_lineal, sampleArray_lineal, 74);  //prueba de busqueda con valor 74 en sample
-    if(found)  cout << "El valor 74 fue encontrado" << endl;
+    gap_search_measure(lineal, gapCodingArray_lineal, sampleArray_lineal, b, amount);   //realizar "amount" cantidades de busquedas de busquedas binarias reducidas
+    
 
 
 

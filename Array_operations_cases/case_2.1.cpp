@@ -12,8 +12,8 @@ vector<int> GeneradorLineal(int n, int epsilon) {
     return lineal;
 }
 
-vector<double> GeneradorNormal(int n, double media, double sigma) {
-    vector<double> normal(n);
+vector<int> GeneradorNormal(int n, double media, double sigma) {
+    vector<int> normal(n);
 
     // Generador de números aleatorios
     random_device rd;

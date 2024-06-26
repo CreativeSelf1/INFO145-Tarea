@@ -1,10 +1,26 @@
 #include <iostream>
 #include <chrono>
+#include <stdlib.h>
 
 #include "searchMeasure.h"
 #include "binarySearch.h"
 using namespace std::chrono;
 
+void chronno_trigger(){
+    int cont = 0;
+    int diff = 0;
+    for (int i = 0; i< 10; i++){
+        auto t1 = high_resolution_clock::now();
+        _sleep(1000);
+        auto t2 = high_resolution_clock::now();
+        duration<double, std::milli> t3 = t2 - t1;
+        diff = t3.count()-1000;
+        cout << diff<<endl;
+        cont += diff;
+    }
+    cont = cont/10;
+    std::cout << "En promedio la estimacion de tiempo tiene una desviacion de " << cont << "ms." << endl;
+}
 void search_measure(vector<int>& array, int amount){
     cout << "numeros buscados con busqueda binaria: " << endl;
     int key;

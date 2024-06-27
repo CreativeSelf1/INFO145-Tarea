@@ -53,6 +53,7 @@ void search_measure(vector<int>& array, int amount){
     auto mainTimeStop= high_resolution_clock::now();
 
     duration<double, std::milli> mainTimeTotal = mainTimeStop - mainTimeStart;
+    auto elapsedTime = duration_cast<chrono::nanoseconds>(mainTimeStop - mainTimeStart); //alternativa para contar el tiempo
     std::cout << "Tiempo de busqueda de " << amount << " palabras: " << mainTimeTotal.count() << endl;
 
     auto mean = mainTimeTotal / amount;

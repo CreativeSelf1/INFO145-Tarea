@@ -5,7 +5,7 @@ using namespace std;
 vector<int> GeneradorLineal(int n, int epsilon) {
     vector<int> lineal(n);
     srand(time(NULL));
-    lineal[0] = rand() % 10;
+    lineal[0] = rand() % epsilon;
     for (int i = 1; i < n; i++) {
         lineal[i] = lineal[i-1] + rand() % epsilon;
     }

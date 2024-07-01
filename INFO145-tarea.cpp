@@ -7,6 +7,7 @@
 #include "BinarySearch/searchMeasure.h"
 #include "Array_operations_cases/case_2.1.h"
 #include "Array_operations_cases/case_2.2.h"
+#include "spentResources.h"
 
 using namespace std;
 
@@ -43,6 +44,18 @@ int main(int argc, char *argv[]) {
     int m = n/4;        //numero de elementos del arreglo    2.2
     int b = n/m;        //intervalo para eleccion de elementos, con b=n/m   2.2
 
+    resources resources;
+
+    float memo1 = resources.getRam();  //Inicialización medición de memoria.
+
+    // lo que sea que se mide
+    
+    resources.getTotalRam(memo1); //Finalización medida de memoria
+
+    chrono::high_resolution_clock::time_point startTime = resources.getTime(); //Inicialización medición de tiempo
+
+    resources.getTotalTime(startTime); //Finalización fin de tiempo
+
 
     chronno_trigger();      //prueba de presicion
 
@@ -53,6 +66,7 @@ int main(int argc, char *argv[]) {
 
     cout << "vector lineal: "; imprimirArray(lineal);
     //cout << "vector normal: "; imprimirArray(normal);
+
 
     search_measure(lineal, amount);   //realizar "amount" cantidades de busquedas de busquedas binarias
     //search_measure(normal, amount);

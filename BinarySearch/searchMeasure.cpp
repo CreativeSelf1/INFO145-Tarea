@@ -4,6 +4,7 @@
 
 #include "searchMeasure.h"
 #include "binarySearch.h"
+
 using namespace std::chrono;
 
 void chronno_trigger(){
@@ -11,7 +12,7 @@ void chronno_trigger(){
     int diff = 0;
     for (int i = 0; i< 10; i++){
         auto t1 = high_resolution_clock::now();
-        _sleep(1000);
+        //_sleep(1000);
         auto t2 = high_resolution_clock::now();
         duration<double, std::milli> t3 = t2 - t1;
         diff = t3.count()-1000;

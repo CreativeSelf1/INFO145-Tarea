@@ -4,7 +4,7 @@
 #include <vector>
 #include <random>
 #include <iostream>
-#include "../BinarySearch/BinarySearch.h"
+#include "../Searches/BinarySearch.h"
 using namespace std;
 
 vector<long int> gapCoding(vector<long int>& lineal, long int n);

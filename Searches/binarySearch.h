@@ -2,9 +2,9 @@
 #define BINARY_SEARCH
 
 #include <vector>
+#include <iostream>
 using namespace std;
 
 bool binary_search(vector<long int>& arr, int key);
-bool gapCodingSearch(vector<int>& arr, vector<int>& gapCodingArray, vector<int>&  sampleArray,int b, int key);
 
 #endif

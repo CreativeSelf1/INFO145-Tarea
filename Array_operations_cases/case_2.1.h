@@ -10,8 +10,8 @@
 
 using namespace std;
 
-vector<int> GeneradorLineal(int n, int epsilon);
-vector<int> GeneradorNormal(int n, double media, double sigma);
+vector<long int> GeneradorLineal(long int n, int epsilon);
+vector<long int> GeneradorNormal(long int n, double media, double sigma);
 
 #endif 
 

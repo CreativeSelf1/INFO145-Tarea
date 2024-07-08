@@ -3,21 +3,25 @@
 using namespace std;
 
 
-vector<int> gapCoding(vector<int>& array, int n){
-    vector<int> gapArray(n);
+vector<long int> gapCoding(vector<long int>& array, long int n){
+    vector<long int> gapArray(n);
 
     gapArray[0] = array[0];
-    for (int i = 1; i < n; i++){
+    for (long i = 1; i < n; i++){
         gapArray[i] = array[i] - array[i-1];
     }
     return gapArray;
 }
 
-vector<int> sampleCoding(vector<int>& array, int n, int m, int b){
+vector<int> sampleCoding(vector<long int>& array, long n, int m, int b){
     vector<int> sampleArray;
-
-    for (int i = 0; i < n && int(sampleArray.size()) < m; i+=b){
-        sampleArray.push_back(array[i]);
+    for (long i = 0; i < n; i+=b){
+        if (int(sampleArray.size()) < m){
+             sampleArray.push_back(array[i]);
+        }
+        else
+            break;
+        
     }
     return sampleArray;
 }

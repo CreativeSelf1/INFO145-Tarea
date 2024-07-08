@@ -8,7 +8,7 @@
 using namespace std;
 
 void chronno_trigger();
-void search_measure(vector<int>& array, int amount, string name);
+void search_measure(vector<long int>& array, long int amount, string name) ;
 void gap_search_measure(vector<int>& arr, vector<int>& gapCodingArray, vector<int>&  sampleArray,int b, int amount);
 
 #endif

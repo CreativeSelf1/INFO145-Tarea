@@ -7,8 +7,8 @@
 #include "../BinarySearch/BinarySearch.h"
 using namespace std;
 
-vector<int> gapCoding(vector<int>& lineal, int n);
-vector<int> sampleCoding(vector<int>& array, int n, int m, int b);
+vector<long int> gapCoding(vector<long int>& lineal, long int n);
+vector<int> sampleCoding(vector<long int>& array, long n, int m, int b);
 
 #endif 
 

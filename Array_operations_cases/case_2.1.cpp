@@ -2,8 +2,8 @@
 using namespace std;
 
 
-vector<int> GeneradorLineal(int n, int epsilon) {
-    vector<int> lineal(n);
+vector<long int> GeneradorLineal(long int n, int epsilon) {
+    vector<long int> lineal(n);
     srand(time(NULL));
     lineal[0] = rand() % epsilon;
     for (int i = 1; i < n; i++) {
@@ -12,8 +12,8 @@ vector<int> GeneradorLineal(int n, int epsilon) {
     return lineal;
 }
 
-vector<int> GeneradorNormal(int n, double media, double sigma) {
-    vector<int> normal(n);
+vector<long int> GeneradorNormal(long int n, double media, double sigma) {
+    vector<long int> normal(n);
 
     // Generador de números aleatorios
     random_device rd;
@@ -24,7 +24,7 @@ vector<int> GeneradorNormal(int n, double media, double sigma) {
         normal[i] = (int)d(gen);            // conversion de float a entero
     }
 
-    sort(normal.begin(), normal.end());
+   // sort(normal.begin(), normal.end());
     return normal;
 }
 

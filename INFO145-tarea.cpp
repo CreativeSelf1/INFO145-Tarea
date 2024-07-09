@@ -2,14 +2,13 @@
 #include <random>
 #include <vector>
 #include <ctime> 
+#include <cstdlib>  
 #include <math.h>       /* log */
 
-#include "BinarySearch/binarySearch.h"
-#include "BinarySearch/searchMeasure.h"
+#include "Searches/binarySearch.h"
+#include "Searches/searchMeasure.h"
 #include "Array_operations_cases/case_2.1.h"
 #include "Array_operations_cases/case_2.2.h"
-
-
 using namespace std;
 
 template <typename T>
@@ -29,22 +28,21 @@ double calcularMedia(vector<long>& v) {
 }
 
 
-bool gapCodingSearch_prueba(vector<long>& arr, vector<long>& gapCodingArray, vector<int>&  sampleArray,int b, int key){
-    //busqueda en sample
+bool gapCodingSearch(vector<long>& arr, vector<long>& gapCodingArray, vector<int>&  sampleArray,int b, int key){
+    //primero busca en el sample el valor "key"
     int left = 0; 
     int right = sampleArray.size()-1;
     int mid;
 
     //guarda intervalos de busquedas del sample
-    int valueLeft = -1; // int valueRight = -1;
+    int valueLeft = -1; 
     int interLeft = 0;  int interRight = sampleArray.size()-1;
 
+    //hacer busqueda binaria y guardar los intervalos del sample
     while (left <= right) {
         mid = left + (right - left) / 2;
-
         if (sampleArray[mid] == key) {
             valueLeft = sampleArray[mid];
-            //valueRight = sampleArray[mid];
             return true;
         }
         if (sampleArray[mid] < key) {
@@ -52,7 +50,6 @@ bool gapCodingSearch_prueba(vector<long>& arr, vector<long>& gapCodingArray, vec
             interLeft = mid;
             left = mid + 1;
         } else {
-            //valueRight = sampleArray[mid];  
             interRight = mid;
             right = mid - 1;
         }
@@ -64,18 +61,16 @@ bool gapCodingSearch_prueba(vector<long>& arr, vector<long>& gapCodingArray, vec
 
 
     //si no se encuenta en el sample buscar en el gapArray dentro del intervalo  
-    //cout << "buscand en gapArray" << endl;
-    long limit = interRight*b;  //
-    
+    long int limit = interRight*b;  //
+
     if(interLeft == interRight){  //Si el numero no se encuentra entre los intervalos del sample, esta mas a la derecha 
         limit = gapCodingArray.size();
-       // cout << "se cambio limit al valor " << limit << endl;
     }
-    
-    for(long i = interLeft*b; i <= limit; i++) {
+
+    for(long int i = interLeft*b; i <= limit; i++) {
         if(valueLeft == key)
             return true;
-        
+    
         if(valueLeft > key)
             return false;
         
@@ -136,28 +131,24 @@ bool shortGapCodingSearch_prueba(vector<long>& arr, vector<short>& gapCodingArra
     return false;
 }
 
-void gap_search_measure_prueba(vector<long>& arr, vector<long>& gapCodingArray, vector<int>&  sampleArray,int b, long amount){
+void gap_search_measure(vector<long int>& arr, vector<long int>& gapCodingArray, vector<int>&  sampleArray,int b, long int amount, string name){
     int key;
     int last = arr.size()-1;
     int gap = arr[last]-arr[0];         // diferencia entre el primer y ultimo elemento
     unsigned t0, t1;
 
     t0 = clock();
-    for (long i = 0; i < amount; i++) {
+    for (long int i = 0; i < amount; i++) {
         key = rand() % gap; // genera numeros aleatorios en el rango del arreglo
-        //cout << "buscando " << key<< endl;
-        bool found = gapCodingSearch_prueba(arr, gapCodingArray, sampleArray, b, key);
-        // if (found)
-        // {
-        //    cout << "encontrado "<<key<<endl;
-        // }
-        // else cout << "no encontrado "<<key<<endl;
+        gapCodingSearch(arr, gapCodingArray, sampleArray, b, key);
     }
     t1 = clock();
     double timeInSeconds = (double(t1 - t0) / CLOCKS_PER_SEC);
     double timeInMilliseconds = timeInSeconds * 1000; 
 
-    std::cout << "Arreglo distribución linal gap coding - Tiempo de ejecución: " << timeInMilliseconds << " ms" << endl;
+    std::cout <<"Arreglo Gap-Coded "<<name<<" - Tiempo de ejecución: "<< timeInMilliseconds << "ms"<<endl;
+
+
 }
 void short_gap_search_measure_prueba(vector<long>& arr, vector<short>& gapCodingArray, vector<int>&  sampleArray,int b, long amount){
     int key;
@@ -180,10 +171,24 @@ void short_gap_search_measure_prueba(vector<long>& arr, vector<short>& gapCoding
 
 int main(int argc, char *argv[]) {
     //Definicion de variables
-    long int n = 100000000;       //largo del arreglo
-    double sigma = 10;  //desviacion estandar
-    long int amount = 100000000;  //numero de busquedas 
+    
+    if (argc != 5) {
+        cout << "Usa: " << argv[0] << " <n> <amount> <sigma> <m>\n";
+        return 1;
+    }
+
+    long int n = atol(argv[1]);  
+    long int amount = atol(argv[2]); 
+    double sigma = atof(argv[3]); 
+    int m = atoi(argv[4]);   
     int epsilon = 15;
+    int b = n / m;                    // intervalo para eleccion de elementos
+
+     if (m >= n) {
+        cout << "El valor m tiene ser menor que n\n";
+        return 1;
+    }
+    
 
     int b = log2(n);        //intervalo para eleccion de elementos   2.2
 
@@ -196,25 +201,29 @@ int main(int argc, char *argv[]) {
 
     // CASO 2.1  -  Arreglo explicito
 
+    //genrerar arreglo distribucion lineal/normal
     vector<long int> lineal = GeneradorLineal(n, epsilon);
     vector<long int> normal = GeneradorNormal(n, calcularMedia(lineal), sigma); 
-    // cout << "vector lineal: "; imprimirArray(lineal);
-    // cout << "vector normal: "; imprimirArray(normal);
+    //cout << "vector lineal: "; imprimirArray(lineal);
+   // cout << "vector normal: "; imprimirArray(normal);
 
     std::cout << "Busquedas binarias - Array Explicito\n" << endl;
 
     search_measure(lineal, amount, "lineal");   //realizar "amount" cantidades de busquedas de busquedas binarias
     search_measure(normal, amount, "normal");
-
+    
 
 
     // // CASO 2.2 GAP-CODING
     
+    //generar GapArray
+    vector<long int> gapCodingArray_lineal = gapCoding(lineal, n);
+    vector<long int> gapCodingArray_normal = gapCoding(normal, n);
+  
+    //generar SampleArray  
     vector<long> gapCodingArray_lineal = gapCoding(lineal, n);
     vector<long> gapCodingArray_normal = gapCoding(normal, n);
     // cout << "gapCodingArray_normal: " << (sizeof(gapCodingArray_normal) * CHAR_BIT )+(sizeof(gapCodingArray_normal[0]) * n * CHAR_BIT) << endl;
-    // cout << " gapCodingArray lineal: "; imprimirArray(gapCodingArray_lineal);
-    // cout << " gapCodingArray normal: "; imprimirArray(gapCodingArray_normal);
     
     vector<int> sampleArray_lineal = sampleCoding(lineal, n, m, b);
     vector<int> sampleArray_normal = sampleCoding(normal, n, m, b);

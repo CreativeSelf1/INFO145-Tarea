@@ -24,7 +24,15 @@ vector<long int> GeneradorNormal(long int n, double media, double sigma) {
         normal[i] = (int)d(gen);            // conversion de float a entero
     }
 
-   // sort(normal.begin(), normal.end());
+    sort(normal.begin(), normal.end());
     return normal;
 }
 
+
+double calcularMedia(vector<long>& v) {
+    double suma = 0.0;
+    for (const auto& elemento : v) {
+        suma += elemento;
+    }
+    return suma / v.size();
+}

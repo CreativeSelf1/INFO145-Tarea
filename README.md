@@ -28,4 +28,4 @@ Reemplaza `<n>`, `<amount>`, `<sigma>`, y `<m>` con los valores específicos que
 
 ### Ejemplos de ejecución
 
-./INFO145-tarea 1000009 1000000 15 10
+`./INFO145-tarea 1000009 1000000 15 10`

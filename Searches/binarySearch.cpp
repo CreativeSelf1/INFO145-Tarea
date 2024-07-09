@@ -1,4 +1,4 @@
-#include "binarySearch.h"
+#include "../Headers/binarySearch.h"
 using namespace std;
 
 bool binary_search(vector<long int>& arr, int key) {

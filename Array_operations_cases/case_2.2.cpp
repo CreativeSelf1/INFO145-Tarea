@@ -1,4 +1,4 @@
-#include "case_2.2.h"
+#include "../Headers/case_2.2.h"
 
 using namespace std;
 

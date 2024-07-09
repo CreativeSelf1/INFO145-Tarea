@@ -1,5 +1,5 @@
-#include "searchMeasure.h"
-#include "binarySearch.h"
+#include "../Headers/searchMeasure.h"
+#include "../Headers/binarySearch.h"
 
 
 //Búsquedas binarias en el arreglo lineal/normal

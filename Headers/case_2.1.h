@@ -6,8 +6,7 @@
 #include <ostream>
 #include <algorithm>
 #include <iostream>
-#include "../Searches/BinarySearch.h"
-
+#include "../Headers/binarySearch.h"
 using namespace std;
 
 vector<long int> GeneradorLineal(long int n, int epsilon);

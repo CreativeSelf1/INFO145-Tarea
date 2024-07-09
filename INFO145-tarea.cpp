@@ -6,10 +6,10 @@
 #include <climits>
 #include <math.h>       /* log */
 
-#include "Searches/binarySearch.h"
-#include "Searches/searchMeasure.h"
-#include "Array_operations_cases/case_2.1.h"
-#include "Array_operations_cases/case_2.2.h"
+#include "Headers/binarySearch.h"
+#include "Headers/searchMeasure.h"
+#include "Headers/case_2.1.h"
+#include "Headers/case_2.2.h"
 using namespace std;
 
 template <typename T>

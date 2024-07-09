@@ -1,5 +1,15 @@
 # INFO145-Tarea
 
+## Compilacion de programa
+
+
+Para compliar el programa usar makeFile
+
+```sh
+make
+
+
+
 ## Ejecución de programa
 
 Para ejecutar el programa, usa el siguiente comando:

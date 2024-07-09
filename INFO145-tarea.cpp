@@ -2,7 +2,8 @@
 #include <random>
 #include <vector>
 #include <ctime> 
-#include <cstdlib>  
+#include <cstdlib>
+#include <climits>
 #include <math.h>       /* log */
 
 #include "Searches/binarySearch.h"

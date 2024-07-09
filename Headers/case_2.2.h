@@ -8,7 +8,6 @@
 using namespace std;
 
 vector<long int> gapCoding(vector<long int>& lineal, long int n);
-vector<short int> shortGapCoding(vector<long int>& array, long int n);
 vector<int> sampleCoding(vector<long int>& array, long n, int m, int b);
 
 #endif 

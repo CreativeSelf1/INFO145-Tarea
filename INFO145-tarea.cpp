@@ -74,7 +74,7 @@ bool gapCodingSearch(vector<long int>& arr, vector<long int>& gapCodingArray, ve
     return false;
 }
 
-void gap_search_measure(vector<long int>& arr, vector<long int>& gapCodingArray, vector<int>&  sampleArray,int b, long int amount, string name){
+void gap_search_measure(vector<long int>& arr, vector<long int>& gapCodingArray, vector<int>&  sampleArray,int b, long int amount){
     int key;
     unsigned t0, t1;
 
@@ -87,12 +87,12 @@ void gap_search_measure(vector<long int>& arr, vector<long int>& gapCodingArray,
     double timeInSeconds = (double(t1 - t0) / CLOCKS_PER_SEC);
     double timeInMilliseconds = timeInSeconds * 1000; 
 
-    cout <<"Arreglo Gap-Coded "<<name<<" - Tiempo de ejecución: "<< timeInMilliseconds << "ms"<<endl;
+    cout<< " - Tiempo de ejecución: "<< timeInMilliseconds << "ms"<<endl;
 }
 
 
 int main(int argc, char *argv[]) {
-    //Definicion de variables
+    //Definición de variables
     if (argc != 5) {
         cout << "Usa: " << argv[0] << " <n> <amount> <sigma> <m>\n";
         return 1;
@@ -116,19 +116,19 @@ int main(int argc, char *argv[]) {
         return 1;
     }
     
-
     // CASO 2.1  -  Arreglo explicito
 
     //generar arreglo distribucion lineal/normal
     vector<long int> lineal = GeneradorLineal(n, epsilon);
     vector<long int> normal = GeneradorNormal(n, calcularMedia(lineal), sigma); 
-    //cout << "vector lineal: "; imprimirArray(lineal);
-   // cout << "vector normal: "; imprimirArray(normal);
-
-
+   
+   //memoria ocupada por arreglo (long int = 8 bytes en sistemas de 64 bits y 4 bytes en sistemas de 32bits)
+    size_t lineal_memory = lineal.size() * sizeof(long int);
+    size_t normal_memory = normal.size() * sizeof(long int);
+  
     cout << "Busquedas binarias - Array Explicito\n" << endl;
-    search_measure(lineal, amount, "lineal");   //realizar "amount" cantidades de busquedas de busquedas binarias
-    search_measure(normal, amount, "normal");
+    cout<< "Arreglo distribución lineal - memoria ocupada " << lineal_memory <<" bytes";search_measure(lineal, amount);   //realizar "amount" cantidades de busquedas de busquedas binarias
+    cout<< "Arreglo distribución normal - memoria ocupada " << normal_memory <<" bytes";search_measure(normal, amount);
     
 
 
@@ -137,20 +137,26 @@ int main(int argc, char *argv[]) {
     //generar GapArray
     vector<long int> gapCodingArray_lineal = gapCoding(lineal, n);
     vector<long int> gapCodingArray_normal = gapCoding(normal, n);
+
+    size_t gap_lineal_memory = gapCodingArray_lineal.size() * sizeof(long int);
+    size_t gap_normal_memory = gapCodingArray_normal.size() * sizeof(long int);
     
     //generar SampleArray  
     vector<int> sampleArray_lineal = sampleCoding(lineal, n, m, b);
     vector<int> sampleArray_normal = sampleCoding(normal, n, m, b);
-    // cout << "sample lineal: "; imprimirArray(sampleArray_lineal);
-    // cout << "sample normal: "; imprimirArray(sampleArray_normal);
+
+    size_t sample_lineal_memory = sampleArray_lineal.size() * sizeof(int);      
+    size_t sample_normal_memory = sampleArray_normal.size() * sizeof(int);
+    
 
     // gap_search_measure(lineal, gapCodingArray_lineal, sampleArray_lineal, b, amount);
     // gap_search_measure(normal, gapCodingArray_normal, sampleArray_normal, b, amount);
 
     cout << "\nBusquedas binarias - Array Gap-Coding\n" << endl;
-    cout << "gapCodingArray_normal: " << (sizeof(gapCodingArray_normal) * CHAR_BIT )+(sizeof(gapCodingArray_normal[0]) * n * CHAR_BIT) << endl;
-    gap_search_measure(lineal, gapCodingArray_lineal, sampleArray_lineal, b, amount,"lineal");    //realizar "amount" cantidades de busquedas de busquedas binarias
-    gap_search_measure(normal, gapCodingArray_lineal, sampleArray_lineal, b, amount,"normal");
+    cout <<"Arreglo Gap-Coded lineal - memoria ocupada "<<gap_lineal_memory+sample_lineal_memory<<" bytes";
+    gap_search_measure(lineal, gapCodingArray_lineal, sampleArray_lineal, b, amount);   
+    cout <<"Arreglo Gap-Coded normal - memoria ocupada "<<gap_normal_memory+sample_normal_memory<<" bytes";
+    gap_search_measure(normal, gapCodingArray_lineal, sampleArray_lineal, b, amount);
 
 
 
@@ -158,11 +164,17 @@ int main(int argc, char *argv[]) {
 
     vector<short int> shortGapCodingArray_lineal = shortGapCoding(lineal, n);
     vector<short int> shortGapCodingArray_normal = shortGapCoding(normal, n);
+
+    size_t shortGap_lineal_memory = shortGapCodingArray_lineal.size() * sizeof(short int);      
+    size_t ShortGap_normal_memory = shortGapCodingArray_normal.size() * sizeof(short int);
+    
     
     cout << "\nBusquedas binarias - Array Gap-Coding con short\n" << endl;
-    cout << "shortGapCodingArray_normal: " << (sizeof(shortGapCodingArray_normal) * CHAR_BIT )+(sizeof(shortGapCodingArray_normal[0]) * n * CHAR_BIT) << endl; 
-    short_gap_search_measure(lineal, shortGapCodingArray_lineal, sampleArray_lineal, b, amount, "lineal");    //realizar "amount" cantidades de busquedas de busquedas binarias
-    short_gap_search_measure(normal, shortGapCodingArray_normal, sampleArray_lineal, b, amount, "normal"); //realizar
+
+    cout <<"Arreglo Gap-Coded lineal codificado de tipo short - memoria ocupada "<<shortGap_lineal_memory + sample_lineal_memory<<" bytes";
+    short_gap_search_measure(lineal, shortGapCodingArray_lineal, sampleArray_lineal, b, amount);    //realizar "amount" cantidades de busquedas de busquedas binarias
+    cout <<"Arreglo Gap-Coded normal codificado de tipo short - memoria ocupada "<<ShortGap_normal_memory + sample_lineal_memory<<" bytes";
+    short_gap_search_measure(normal, shortGapCodingArray_normal, sampleArray_lineal, b, amount); //realizar
 
     return 0;
 }

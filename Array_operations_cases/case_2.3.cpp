@@ -15,7 +15,6 @@ vector<short int> shortGapCoding(vector<long int>& array, long int n){
         short temp = diff;
         shortGapArray[i] = temp;
     }
-    // cout << "shortGapCodingArray_normal: " << ((sizeof(shortGapArray[0]))*n) * CHAR_BIT << endl;
     return shortGapArray;
 }
 
@@ -72,7 +71,7 @@ bool shortGapCodingSearch(vector<long>& arr, vector<short>& gapCodingArray, vect
     return false;
 }
 
-void short_gap_search_measure(vector<long>& arr, vector<short>& gapCodingArray, vector<int>&  sampleArray,int b, long amount, string name){
+void short_gap_search_measure(vector<long>& arr, vector<short>& gapCodingArray, vector<int>&  sampleArray,int b, long amount){
     int key;
     unsigned t0, t1;
 
@@ -86,5 +85,5 @@ void short_gap_search_measure(vector<long>& arr, vector<short>& gapCodingArray, 
     double timeInSeconds = (double(t1 - t0) / CLOCKS_PER_SEC);
     double timeInMilliseconds = timeInSeconds * 1000; 
 
-    cout << "Arreglo "<< name << " codificado - gap coding (con short) - Tiempo de ejecución: " << timeInMilliseconds << " ms" << endl;
+    cout << " - Tiempo de ejecución: " << timeInMilliseconds << " ms" << endl;
 }

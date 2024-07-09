@@ -3,7 +3,7 @@
 
 
 //Búsquedas binarias en el arreglo lineal/normal
-void search_measure(vector<long int>& array, long int amount, string name){
+void search_measure(vector<long int>& array, long int amount){
     unsigned t0, t1;
    
     t0 = clock();
@@ -17,5 +17,5 @@ void search_measure(vector<long int>& array, long int amount, string name){
     double timeInSeconds = (double(t1 - t0) / CLOCKS_PER_SEC);
     double timeInMilliseconds = timeInSeconds * 1000; 
      
-    cout << "Arreglo distribución " << name << " - Tiempo de ejecución: " << timeInMilliseconds << " ms" << endl;
+    cout << " - Tiempo de ejecución: " << timeInMilliseconds << " ms" << endl;
 }

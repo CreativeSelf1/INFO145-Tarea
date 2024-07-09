@@ -12,6 +12,6 @@
 
 using namespace std;
 
-void search_measure(vector<long int>& array, long int amount, string name) ;
+void search_measure(vector<long int>& array, long int amount) ;
 
 #endif

@@ -1,6 +1,6 @@
 # INFO145-Tarea
 
-## Compilacion de programa
+## Compilación de programa
 
 
 Para compilar el programa, usar makeFile

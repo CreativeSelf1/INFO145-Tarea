@@ -21,7 +21,7 @@ Para ejecutar el programa, usa el siguiente comando:
 Donde:
 - `<n>` largo del arreglo
 - `<amount>` número de búsquedas
-- `<sigma>` desviación estandar
+- `<sigma>` desviación estándar
 - `<m>` número de elementos del Sample
 
 Reemplaza `<n>`, `<amount>`, `<sigma>`, y `<m>` con los valores específicos que deseas usar al ejecutar el programa.

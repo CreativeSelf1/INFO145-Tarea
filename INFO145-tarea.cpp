@@ -19,14 +19,6 @@ void imprimirArray(const vector<T>& v) {
     cout << endl;
 }
 
-double calcularMedia(vector<long>& v) {
-    double suma = 0.0;
-    for (const auto& elemento : v) {
-        suma += elemento;
-    }
-    return suma / v.size();
-}
-
 
 bool gapCodingSearch(vector<long>& arr, vector<long>& gapCodingArray, vector<int>&  sampleArray,int b, int key){
     //primero busca en el sample el valor "key"
@@ -81,7 +73,7 @@ bool gapCodingSearch(vector<long>& arr, vector<long>& gapCodingArray, vector<int
     return false;
 }
 
-bool shortGapCodingSearch_prueba(vector<long>& arr, vector<short>& gapCodingArray, vector<int>&  sampleArray,int b, int key){
+bool shortGapCodingSearch(vector<long>& arr, vector<short>& gapCodingArray, vector<int>&  sampleArray,int b, int key){
     //busqueda en sample
     int left = 0; 
     int right = sampleArray.size()-1;
@@ -130,7 +122,6 @@ bool shortGapCodingSearch_prueba(vector<long>& arr, vector<short>& gapCodingArra
     }
     return false;
 }
-
 void gap_search_measure(vector<long int>& arr, vector<long int>& gapCodingArray, vector<int>&  sampleArray,int b, long int amount, string name){
     int key;
     int last = arr.size()-1;
@@ -150,7 +141,7 @@ void gap_search_measure(vector<long int>& arr, vector<long int>& gapCodingArray,
 
 
 }
-void short_gap_search_measure_prueba(vector<long>& arr, vector<short>& gapCodingArray, vector<int>&  sampleArray,int b, long amount){
+void short_gap_search_measure(vector<long>& arr, vector<short>& gapCodingArray, vector<int>&  sampleArray,int b, long amount){
     int key;
     int last = arr.size()-1;
     int gap = arr[last]-arr[0];         // diferencia entre el primer y ultimo elemento
@@ -159,7 +150,7 @@ void short_gap_search_measure_prueba(vector<long>& arr, vector<short>& gapCoding
     t0 = clock();
     for (long i = 0; i < amount; i++) {
         key = rand() % gap; // genera numeros aleatorios en el rango del arreglo
-        bool found = shortGapCodingSearch_prueba(arr, gapCodingArray, sampleArray, b, key);
+        bool found = shortGapCodingSearch(arr, gapCodingArray, sampleArray, b, key);
     }
     t1 = clock();
 
@@ -188,11 +179,6 @@ int main(int argc, char *argv[]) {
         cout << "El valor m tiene ser menor que n\n";
         return 1;
     }
-    
-
-    int b = log2(n);        //intervalo para eleccion de elementos   2.2
-
-    int m = n/b;       //numero de elementos del arreglo    2.2
 
     
     
@@ -219,11 +205,8 @@ int main(int argc, char *argv[]) {
     //generar GapArray
     vector<long int> gapCodingArray_lineal = gapCoding(lineal, n);
     vector<long int> gapCodingArray_normal = gapCoding(normal, n);
-  
+    
     //generar SampleArray  
-    vector<long> gapCodingArray_lineal = gapCoding(lineal, n);
-    vector<long> gapCodingArray_normal = gapCoding(normal, n);
-    // cout << "gapCodingArray_normal: " << (sizeof(gapCodingArray_normal) * CHAR_BIT )+(sizeof(gapCodingArray_normal[0]) * n * CHAR_BIT) << endl;
     
     vector<int> sampleArray_lineal = sampleCoding(lineal, n, m, b);
     vector<int> sampleArray_normal = sampleCoding(normal, n, m, b);
@@ -234,12 +217,9 @@ int main(int argc, char *argv[]) {
     // gap_search_measure(normal, gapCodingArray_normal, sampleArray_normal, b, amount);
 
     std::cout << "\nBusquedas binarias - Array Gap-Coding\n" << endl;
-    gap_search_measure_prueba(lineal, gapCodingArray_lineal, sampleArray_lineal, b, amount);    //realizar "amount" cantidades de busquedas de busquedas binarias
-    gap_search_measure_prueba(normal, gapCodingArray_lineal, sampleArray_lineal, b, amount);
-
-
-
-    
+    std::cout << "gapCodingArray_normal: " << (sizeof(gapCodingArray_normal) * CHAR_BIT )+(sizeof(gapCodingArray_normal[0]) * n * CHAR_BIT) << endl;
+    gap_search_measure(lineal, gapCodingArray_lineal, sampleArray_lineal, b, amount,"lineal");    //realizar "amount" cantidades de busquedas de busquedas binarias
+    gap_search_measure(normal, gapCodingArray_lineal, sampleArray_lineal, b, amount,"normal");
 
 
 
@@ -248,11 +228,10 @@ int main(int argc, char *argv[]) {
     vector<short int> shortGapCodingArray_lineal = shortGapCoding(lineal, n);
     vector<short int> shortGapCodingArray_normal = shortGapCoding(normal, n);
     
-    // std::cout << "shortGapCodingArray_normal: " << (sizeof(shortGapCodingArray_normal) * CHAR_BIT )+(sizeof(shortGapCodingArray_normal[0]) * n * CHAR_BIT) << endl; 
-    
     std::cout << "\nBusquedas binarias - Array Gap-Coding con short\n" << endl;
-    short_gap_search_measure_prueba(lineal, shortGapCodingArray_lineal, sampleArray_lineal, b, amount);    //realizar "amount" cantidades de busquedas de busquedas binarias
-    short_gap_search_measure_prueba(normal, shortGapCodingArray_normal, sampleArray_lineal, b, amount);
+    std::cout << "shortGapCodingArray_normal: " << (sizeof(shortGapCodingArray_normal) * CHAR_BIT )+(sizeof(shortGapCodingArray_normal[0]) * n * CHAR_BIT) << endl; 
+    short_gap_search_measure(lineal, shortGapCodingArray_lineal, sampleArray_lineal, b, amount);    //realizar "amount" cantidades de busquedas de busquedas binarias
+    short_gap_search_measure(normal, shortGapCodingArray_normal, sampleArray_lineal, b, amount);
 
     return 0;
 }

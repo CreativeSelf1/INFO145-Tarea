@@ -18,6 +18,14 @@ Para ejecutar el programa, usa el siguiente comando:
 ./INFO145-tarea <n> <amount> <sigma> <m>
 ```
 
+Donde:
+- `<n>` largo del arreglo
+- `<amount>` número de búsquedas
+- `<sigma>` desviación estandar
+- `<m>` número de elementos del Sample
+
+Reemplaza `<n>`, `<amount>`, `<sigma>`, y `<m>` con los valores específicos que deseas usar al ejecutar el programa.
+
 ### Ejemplos de ejecución
 
 ./INFO145-tarea 1000009 1000000 15 10

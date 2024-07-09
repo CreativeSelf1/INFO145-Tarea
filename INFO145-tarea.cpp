@@ -4,7 +4,7 @@
 #include <ctime> 
 #include <cstdlib>
 #include <climits>
-#include <math.h>       /* log */
+#include <math.h>       
 
 #include "Headers/binarySearch.h"
 #include "Headers/searchMeasure.h"
@@ -117,10 +117,9 @@ int main(int argc, char *argv[]) {
     }
     
 
-
     // CASO 2.1  -  Arreglo explicito
 
-    //generr arreglo distribucion lineal/normal
+    //generar arreglo distribucion lineal/normal
     vector<long int> lineal = GeneradorLineal(n, epsilon);
     vector<long int> normal = GeneradorNormal(n, calcularMedia(lineal), sigma); 
     //cout << "vector lineal: "; imprimirArray(lineal);
@@ -162,8 +161,8 @@ int main(int argc, char *argv[]) {
     
     cout << "\nBusquedas binarias - Array Gap-Coding con short\n" << endl;
     cout << "shortGapCodingArray_normal: " << (sizeof(shortGapCodingArray_normal) * CHAR_BIT )+(sizeof(shortGapCodingArray_normal[0]) * n * CHAR_BIT) << endl; 
-    short_gap_search_measure(lineal, shortGapCodingArray_lineal, sampleArray_lineal, b, amount);    //realizar "amount" cantidades de busquedas de busquedas binarias
-    short_gap_search_measure(normal, shortGapCodingArray_normal, sampleArray_lineal, b, amount);
+    short_gap_search_measure(lineal, shortGapCodingArray_lineal, sampleArray_lineal, b, amount, "lineal");    //realizar "amount" cantidades de busquedas de busquedas binarias
+    short_gap_search_measure(normal, shortGapCodingArray_normal, sampleArray_lineal, b, amount, "normal"); //realizar
 
     return 0;
 }

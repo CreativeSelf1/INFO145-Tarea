@@ -2,13 +2,12 @@
 #include <random>
 #include <vector>
 #include <ctime> 
+#include <cstdlib>  
 
 #include "Searches/binarySearch.h"
 #include "Searches/searchMeasure.h"
 #include "Array_operations_cases/case_2.1.h"
 #include "Array_operations_cases/case_2.2.h"
-
-
 using namespace std;
 
 template <typename T>
@@ -18,7 +17,6 @@ void imprimirArray(const vector<T>& v) {
     }
     cout << endl;
 }
-
 
 
 bool gapCodingSearch(vector<long>& arr, vector<long>& gapCodingArray, vector<int>&  sampleArray,int b, int key){
@@ -91,12 +89,23 @@ void gap_search_measure(vector<long int>& arr, vector<long int>& gapCodingArray,
 
 int main(int argc, char *argv[]) {
     //Definicion de variables
-    long int n = 1000;       //largo del arreglo
-    double sigma = 15;  //desviacion estandar
-    long int amount = 1000000;  //numero de busquedas 
+    
+    if (argc != 5) {
+        cout << "Usa: " << argv[0] << " <n> <amount> <sigma> <m>\n";
+        return 1;
+    }
+
+    long int n = atol(argv[1]);  
+    long int amount = atol(argv[2]); 
+    double sigma = atof(argv[3]); 
+    int m = atoi(argv[4]);   
     int epsilon = 15;
-    int m = 50;        //numero de elementos del arreglo    2.2
-    int b = n/m;        //intervalo para eleccion de elementos   2.2
+    int b = n / m;                    // intervalo para eleccion de elementos
+
+     if (m >= n) {
+        cout << "El valor m tiene ser menor que n\n";
+        return 1;
+    }
     
 
     // CASO 2.1  -  Arreglo explicito
